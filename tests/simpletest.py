@@ -139,8 +139,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def assertBfPermissions(self, bf, perms):
         oct_mode = oct(os.stat(bf.name).st_mode)
-        self.assert_(oct_mode.endswith(perms),
-                     'unexpected perms %s' % oct_mode)
+        self.assert_(oct_mode.endswith(perms), f'unexpected perms {oct_mode}')
 
     @with_test_file
     def test_to_from_base64(self, filename):

@@ -14,11 +14,7 @@ class TestAccuracyMixin(object):
     def _gen_random_items(self, n, exclude=None):
         # Yield n unique random items; if an existing set is provided,
         # items already in that set will not be yielded.
-        if exclude is not None:
-            yielded = exclude
-        else:
-            yielded = set()
-
+        yielded = exclude if exclude is not None else set()
         yield_count = 0
         while yield_count < n:
             random_item = self._random_item()

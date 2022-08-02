@@ -28,21 +28,16 @@ def test_errors(bf, correct_wordlist, test_wordlist):
         if word in bf:
             if word not in correct_wordlist:
                 errors[0] += 1
-        else:
-            if word in correct_wordlist:
-                errors[1] += 1
-    print '%0.2f%% positive %0.2f%% negative' % (
-        errors[0] / float(len(correct_wordlist)) * 100,
-        errors[1] / float(len(correct_wordlist)) * 100)
+        elif word in correct_wordlist:
+            errors[1] += 1
+    errors = [0, 0]
 
 def create_word_list(filename):
-    f = open(filename, 'r')
-    words_set = set()
-    for line in f:
-        line = line.strip().lower()
-        if line:
-            words_set.add(line)
-    f.close()
+    with open(filename, 'r') as f:
+        words_set = set()
+        for line in f:
+            if line := line.strip().lower():
+                words_set.add(line)
     return words_set
 
 def create_cbloomfilter(*args):
